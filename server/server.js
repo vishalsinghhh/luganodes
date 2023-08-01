@@ -52,11 +52,18 @@ const recallFn=()=>{
         conn.once("open", () => console.log("got connection!"));
         conn.on("data", (data) => {
             const message = data.toString();
-            console.log("Received message:", message);
-            messages.push(message);
+            // console.log("Received message:", {"otherSide":message});
+            messages.push({"otherSide":message});
           });
       
         process.stdin.pipe(conn).pipe(process.stdout);
+        process.stdin.on('data', data => {
+            const inputMessage = data.toString().trim();
+            if (inputMessage.length > 0) {
+              messages.push({"mySide":inputMessage});
+            //   console.log('Stored message:', inputMessage);
+            }
+          });
       }
 }
 
