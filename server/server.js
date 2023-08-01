@@ -23,6 +23,11 @@ app.post("/", (req, res)=>{
     recallFn()
     res.send("Hello")
 })
+let messages = []
+app.get('/messages', (req, res)=>{
+    res.send({messages})
+})
+
 const port = process.env.PORT || 5000;
 const recallFn=()=>{
     if (type === "main") {
@@ -45,6 +50,11 @@ const recallFn=()=>{
         );
         const conn = dht.connect(publicKey);
         conn.once("open", () => console.log("got connection!"));
+        conn.on("data", (data) => {
+            const message = data.toString();
+            console.log("Received message:", message);
+            messages.push(message);
+          });
       
         process.stdin.pipe(conn).pipe(process.stdout);
       }
