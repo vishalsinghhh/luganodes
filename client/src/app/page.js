@@ -2,9 +2,10 @@
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useState } from "react";
+import styles from "./page.module.css"
 
 
-export default async function Home() {
+export default function Home() {
   const router = useRouter();
   const [chatID, setChatID] = useState("");
   const submitData = async (obj) => {
@@ -15,15 +16,16 @@ export default async function Home() {
   };
 
   return (
-    <div>
+    <div className={styles.homeMain}>
       <div
         onClick={() => {
           submitData({ type_of_user: "main", user_id: "" });
         }}
       >
-        create new chat
+      <button className={styles.btn}>create new chat</button>
+        
       </div>
-      <div>
+      <div className={styles.background}>
         <input
           type="text"
           placeholder="Enter Chat ID"
@@ -36,7 +38,7 @@ export default async function Home() {
             submitData({ type_of_user: "client", user_id: chatID });
           }}
         >
-          Join
+          <button>Join</button>
         </div>
       </div>
     </div>
