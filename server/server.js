@@ -22,8 +22,14 @@ app.post("/", async (req, res) => {
   const { type_of_user, user_id } = req.body;
   userID = user_id;
   type = type_of_user;
-  const chatID = recallFn();
-  res.send({chatID});
+  
+  if(type==="main"){
+    const chatID = recallFn();
+    res.send({chatID});
+  }else{
+    res.send({chatID:userID});
+  }
+  
 });
 let messages = [];
 app.get("/messages", (req, res) => {
