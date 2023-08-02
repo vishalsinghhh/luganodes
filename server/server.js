@@ -3,8 +3,10 @@ const DHT = require("hyperdht");
 const goodbye = require("graceful-goodbye");
 const b4a = require("b4a");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 
 const app = express();
+app.use(cors())
 const dht = new DHT();
 
 const keyPair = DHT.keyPair();
