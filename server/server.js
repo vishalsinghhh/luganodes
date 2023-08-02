@@ -3,10 +3,10 @@ const DHT = require("hyperdht");
 const goodbye = require("graceful-goodbye");
 const b4a = require("b4a");
 const bodyParser = require("body-parser");
-const cors = require('cors');
+const cors = require("cors");
 
 const app = express();
-app.use(cors())
+app.use(cors());
 const dht = new DHT();
 
 const keyPair = DHT.keyPair();
@@ -22,14 +22,13 @@ app.post("/", async (req, res) => {
   const { type_of_user, user_id } = req.body;
   userID = user_id;
   type = type_of_user;
-  
-  if(type==="main"){
+
+  if (type === "main") {
     const chatID = recallFn();
-    res.send({chatID});
-  }else{
-    res.send({chatID:userID});
+    res.send({ chatID });
+  } else {
+    res.send({ chatID: userID });
   }
-  
 });
 let messages = [];
 app.get("/messages", (req, res) => {
@@ -56,7 +55,7 @@ const recallFn = () => {
         }
       });
     });
-    return b4a.toString(keyPair.publicKey, "hex")
+    return b4a.toString(keyPair.publicKey, "hex");
   }
 
   //   CLIENT SIDE
