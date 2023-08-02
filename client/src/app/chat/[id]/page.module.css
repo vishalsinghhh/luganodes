@@ -1,0 +1,25 @@
+.chatRoom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile1{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 20px;
+}
+.profile2{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 20px;
+}
+.background1{
+    background: #5e5e5e;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
