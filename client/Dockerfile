@@ -1,6 +1,11 @@
 FROM node:16
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY . .
-RUN npm install--production --ignore-scripts
+
+RUN npm cache clean --force
+
+RUN npm install --legacy-peer-deps
+
+CMD npm run dev
