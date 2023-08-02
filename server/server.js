@@ -16,12 +16,12 @@ let userID = "";
 let type = "";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
   const { type_of_user, user_id } = req.body;
   userID = user_id;
   type = type_of_user;
-  recallFn();
-  res.send("Hello");
+  const chatID = recallFn();
+  res.send({chatID});
 });
 let messages = [];
 app.get("/messages", (req, res) => {
@@ -48,6 +48,7 @@ const recallFn = () => {
         }
       });
     });
+    return b4a.toString(keyPair.publicKey, "hex")
   }
 
   //   CLIENT SIDE
