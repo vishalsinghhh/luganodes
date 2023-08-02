@@ -3,7 +3,12 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useState } from "react";
 
-export default function Home() {
+async function getData(){
+  const res = await fetch('http://localhost:5000/messages')
+  return res.json()
+}
+
+export default async function Home() {
   const router = useRouter();
   const [chatID, setChatID] = useState("");
   const submitData = async (obj) => {
@@ -12,7 +17,10 @@ export default function Home() {
       router.push(`/chat/${response.data.chatID}`);
     }
   };
-  console.log(chatID);
+
+
+  const data = await getData()
+  console.log(data);
 
   return (
     <div>

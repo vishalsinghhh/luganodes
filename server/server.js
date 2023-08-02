@@ -27,6 +27,7 @@ app.post("/", async (req, res) => {
     const chatID = recallFn();
     res.send({ chatID });
   } else {
+    recallFn();
     res.send({ chatID: userID });
   }
 });
